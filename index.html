@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Gabriel Lenain">
+<meta name="description" content="Gabriel Lenain's personal academic website.">
+<title>Gabriel Lenain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Roboto+Slab:wght@100;300;400&display=swap">
+<style>
+/* Layout: al-folio-style single column (930px), sticky top nav, photo floated right of the bio. */
+:root {
+  --bg: #ffffff;
+  --fg: #212529;
+  --muted: #6c757d;
+  --rule: #dee2e6;
+  --accent: #b509ac;
+  --hover: #f7f3f7;
+  --nav-bg: rgba(255,255,255,.92);
+  --badge-fg: #ffffff;
+  --font-body: "Roboto", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-name: "Roboto Slab", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1c1d; --fg: #c9d1d9; --muted: #8b949e; --rule: #3a3a3c;
+    --accent: #2698ba; --hover: #252527; --nav-bg: rgba(28,28,29,.92); --badge-fg: #ffffff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1c1d; --fg: #c9d1d9; --muted: #8b949e; --rule: #3a3a3c;
+  --accent: #2698ba; --hover: #252527; --nav-bg: rgba(28,28,29,.92); --badge-fg: #ffffff;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: background .2s, color .2s;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+b, strong { font-weight: 500; }
+img { max-width: 100%; }
+
+.container { max-width: 930px; margin: 0 auto; padding-inline: 16px; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav .container {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; min-height: 56px; flex-wrap: wrap;
+}
+.nav .brand { color: var(--fg); font-size: 1.15rem; font-weight: 300; }
+.nav .brand b { font-weight: 500; }
+.nav .brand:hover { text-decoration: none; color: var(--accent); }
+.nav ul { list-style: none; display: flex; align-items: center; gap: 20px; margin: 0; padding: 0; flex-wrap: wrap; }
+.nav ul a { color: var(--fg); font-weight: 400; }
+.nav ul a:hover, .nav ul a.active { color: var(--accent); text-decoration: none; }
+.theme-btn {
+  background: none; border: 0; color: var(--fg); cursor: pointer; padding: 4px;
+  display: inline-flex; align-items: center;
+}
+.theme-btn:hover { color: var(--accent); }
+.theme-btn svg { width: 18px; height: 18px; }
+
+/* ---------- header ---------- */
+main { padding-block: 40px 24px; }
+.post-header h1 {
+  font-family: var(--font-name); font-weight: 100; font-size: 2.6rem;
+  margin: 0; line-height: 1.2; text-wrap: balance;
+}
+.post-header h1 b { font-weight: 400; }
+.desc { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+
+.about { display: flow-root; margin-top: 24px; }
+.profile {
+  float: right; width: 30%; max-width: 260px; margin: 0 0 16px 24px;
+}
+.profile img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+.profile .address { font-size: .8rem; color: var(--muted); text-align: center; margin-top: 8px; line-height: 1.4; }
+.about p { margin: 0 0 1rem; }
+@media (max-width: 576px) {
+  .profile { float: none; width: 60%; margin: 0 auto 20px; }
+  .post-header h1 { font-size: 2rem; }
+}
+
+/* ---------- sections ---------- */
+h2.section {
+  font-weight: 400; font-size: 1.35rem; color: var(--accent);
+  margin: 40px 0 12px; padding-bottom: 4px; border-bottom: 1px solid var(--rule);
+  text-transform: lowercase;
+}
+h2.section a { color: inherit; }
+
+/* news */
+.news { width: 100%; border-collapse: collapse; }
+.news th {
+  text-align: left; vertical-align: top; white-space: nowrap;
+  font-weight: 500; width: 7.5rem; padding: 6px 12px 6px 0;
+  font-variant-numeric: tabular-nums;
+}
+.news td { padding: 6px 0; vertical-align: top; }
+.news-scroll { max-height: 18rem; overflow-y: auto; }
+
+/* publications */
+.year { text-align: right; color: var(--rule); font-size: 2.2rem; font-weight: 700; margin: 24px 0 -8px; line-height: 1; }
+ol.bib { list-style: none; margin: 0; padding: 0; }
+ol.bib > li { padding: 14px 8px; border-radius: 4px; }
+ol.bib > li.highlight { background: var(--hover); }
+.pub { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; }
+@media (max-width: 576px) { .pub { grid-template-columns: minmax(0, 1fr); } }
+.preview { position: relative; }
+.preview img { width: 100%; display: block; border-radius: 4px; border: 1px solid var(--rule); }
+.abbr {
+  display: inline-block; background: var(--accent); color: var(--badge-fg);
+  font-size: .72rem; font-weight: 500; letter-spacing: .04em; padding: 2px 8px;
+  border-radius: 3px; margin-bottom: 6px; min-width: 64px; text-align: center;
+}
+.pub .title { font-weight: 500; font-size: 1.02rem; line-height: 1.35; }
+.pub .author { margin-top: 2px; }
+.pub .author em { font-style: normal; font-weight: 500; border-bottom: 1px solid var(--fg); }
+.pub .periodical { margin-top: 2px; }
+.pub .periodical em { font-style: italic; }
+.award { color: var(--accent); font-weight: 400; }
+.links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.links a, .links button {
+  font: inherit; font-size: .72rem; font-weight: 400; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--fg); background: none; border: 1px solid var(--fg); border-radius: 3px;
+  padding: 1px 8px; cursor: pointer; line-height: 1.6;
+}
+.links a:hover, .links button:hover, .links button[aria-expanded="true"] {
+  color: var(--accent); border-color: var(--accent); text-decoration: none;
+}
+.abstract, .bibtex { margin-top: 10px; font-size: .92rem; }
+.bibtex pre {
+  margin: 0; padding: 10px 12px; overflow-x: auto; font-size: .8rem;
+  border: 1px solid var(--rule); border-radius: 4px; background: var(--hover);
+}
+
+/* cv */
+.cv h3 { font-size: 1rem; font-weight: 500; margin: 18px 0 4px; }
+.cv .news th { width: 7.5rem; font-weight: 400; color: var(--muted); }
+.cv .role { font-weight: 500; }
+.cv .where { color: var(--muted); }
+.cv-pdf { font-size: .85rem; font-weight: 400; text-transform: none; margin-left: 8px; }
+
+/* simple lists (activities) */
+ul.plain { margin: 0; padding-left: 1.2rem; }
+ul.plain li { margin: 4px 0; }
+
+/* ---------- footer ---------- */
+.social { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; margin: 48px 0 8px; }
+.social a { color: var(--fg); font-weight: 400; }
+.social a:hover { color: var(--accent); text-decoration: none; }
+.contact-note { text-align: center; color: var(--muted); font-size: .9rem; }
+footer { border-top: 1px solid var(--rule); margin-top: 32px; }
+footer p { text-align: center; color: var(--muted); font-size: .8rem; margin: 14px 0; }
+
+/* placeholders: anything in [brackets] still needs filling in */
+.todo { background: color-mix(in srgb, var(--accent) 14%, transparent); border-radius: 2px; padding: 0 2px; }
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="#top"><b>Gabriel</b> Lenain</a>
+    <ul>
+      <li><a href="#top" class="active">about</a></li>
+      <li><a href="#publications">publications</a></li>
+      <li><a href="#cv">cv</a></li>
+      <li>
+        <button class="theme-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container" id="top">
+
+  <!-- ============================== HEADER ============================== -->
+  <header class="post-header">
+    <h1><b>Gabriel</b> Lenain</h1>
+    <p class="desc">PhD Student | <a href="https://www.ens.psl.eu/">ENS Paris</a> | <a href="https://www.di.ens.fr/willow/">Inria WILLOW</a></p>
+  </header>
+
+  <!-- ============================== ABOUT ============================== -->
+  <section class="about">
+    <figure class="profile">
+      <img src="images/profile.jpg" alt="Gabriel Lenain">
+      <figcaption class="address">Paris, France</figcaption>
+    </figure>
+
+    <p>
+      I am a first-year PhD student at <a href="https://www.ens.psl.eu/">ENS Paris</a>, in the <a href="https://www.di.ens.fr/willow/">Inria WILLOW team</a>,
+      advised by <a href="https://www.di.ens.fr/~ponce/">Jean Ponce</a> and <a href="https://morpheo.inrialpes.fr/~Boyer">Edmond Boyer</a>.
+      My research interests lie at the intersection of computer vision, geometry, and machine learning, with a focus on 3D reconstruction and neural implicit representations.
+    </p>
+    <p>
+      I recently earned my engineering degree from <a href="https://programmes.polytechnique.edu/en/ingenieur-polytechnicien-program/ingenieur-polytechnicien-program">École Polytechnique</a> (X2022),
+      specializing in applied mathematics, alongside a Master's degree in Artificial Intelligence, Systems, and Data (IASD) at ENS–PSL.
+      More information is available in my <a href="#cv">CV</a>.
+    </p>
+    <p>
+      Feel free to reach out at <a href="mailto:gabriel.lenain@inria.fr">gabriel.lenain@inria.fr</a>.
+    </p>
+  </section>
+
+  <!-- ============================== NEWS ============================== -->
+  <h2 class="section">news</h2>
+  <div class="news-scroll">
+    <table class="news">
+      <tr><th scope="row">Oct 2026</th><td>Preprint <a href="https://arxiv.org/abs/2610.18005"><i>Surface Reconstruction from Range Scans under Visibility Constraints</i></a> is out on arXiv.</td></tr>
+      <tr><th scope="row">Oct 2026</th><td>Started my PhD at ENS Paris &amp; Inria WILLOW, advised by Jean Ponce and Edmond Boyer.</td></tr>
+      <tr><th scope="row">Apr 2026</th><td>Started a research internship at <a href="https://www.di.ens.fr/willow/">Inria WILLOW</a>.</td></tr>
+    </table>
+  </div>
+
+  <!-- ============================== PUBLICATIONS ==============================
+       Copy an <li> block to add a paper. Add class="highlight" to shade it.
+       Each paper's abstract/bibtex ids must be unique (p1-abs, p2-abs, …). -->
+  <h2 class="section" id="publications">publications</h2>
+
+  <p class="year">2026</p>
+  <ol class="bib">
+    <li class="highlight">
+      <div class="pub">
+        <div class="preview">
+          <span class="abbr">arXiv</span>
+          <img src="images/paper1.jpg" alt="Teaser figure: surface reconstructed from range scans">
+        </div>
+        <div>
+          <div class="title">Surface Reconstruction from Range Scans under Visibility Constraints</div>
+          <div class="author"><em>Gabriel Lenain</em>, <a href="https://eboyerfr.github.io/">Edmond Boyer</a>, and <a href="https://www.di.ens.fr/~ponce/">Jean Ponce</a></div>
+          <div class="periodical"><em>arXiv preprint arXiv:2610.18005</em>, 2026 · under review</div>
+          <div class="links">
+            <button type="button" aria-expanded="false" aria-controls="p1-abs">Abs</button>
+            <a href="https://arxiv.org/abs/2610.18005">arXiv</a>
+            <a href="https://arxiv.org/pdf/2610.18005">PDF</a>
+            <a href="https://gabriellenain.github.io/visibility-recon/">Website</a>
+            <button type="button" aria-expanded="false" aria-controls="p1-bib">Bib</button>
+          </div>
+          <div class="abstract" id="p1-abs" hidden><p>A range scan records more than where a surface is: every measured ray also states where the
+            surface is not. Most implicit reconstruction methods discard this, treating the scan as an
+            unordered point cloud. We instead take the sensor origin of every point as input and fit a
+            continuous 1-Lipschitz implicit field directly to the rays, supervising the first intersection
+            found by differentiable sphere tracing rather than an unsigned distance to the points.
+            Starting from a closed-form field enclosing the scene, depth supervision carves the surface inward
+            toward the observations. The Lipschitz constraint turns visibility into a geometric
+            certificate: positive field values along a measured ray guarantee a ball of empty space around
+            it, so one-dimensional ray evidence becomes a three-dimensional free-space guarantee. The result is
+            robust to acquisition noise, outliers and sparse sampling, and avoids hallucinating surfaces in
+            regions the sensor has observed to be empty.</p></div>
+          <div class="bibtex" id="p1-bib" hidden><pre>@article{lenain2026visibility,
+  title   = {Surface Reconstruction from Range Scans Under Visibility Constraints},
+  author  = {Lenain, Gabriel and Boyer, Edmond and Ponce, Jean},
+  journal = {arXiv preprint arXiv:2610.18005},
+  year    = {2026}
+}</pre></div>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <!-- ============================== CV ==============================
+       One <tr> per entry: dates on the left, role and place on the right.
+       To offer a PDF too, put it in data/ and uncomment the link in the heading. -->
+  <h2 class="section" id="cv">cv <!-- <a class="cv-pdf" href="data/GabrielLenain-CV.pdf">(pdf)</a> --></h2>
+  <div class="cv">
+    <h3>Education</h3>
+    <table class="news">
+      <tr><th scope="row">Oct 2026 – now</th><td><span class="role">PhD in Computer Vision</span><br><span class="where">ENS Paris &amp; Inria WILLOW, advised by Jean Ponce and Edmond Boyer</span></td></tr>
+      <tr><th scope="row"><span class="todo">2025 – 2026</span></th><td><span class="role">M2 IASD (Artificial Intelligence, Systems, Data)</span><br><span class="where">PSL University (ENS Paris, Université Paris Dauphine, Mines Paris)</span></td></tr>
+      <tr><th scope="row">2022 – 2025</th><td><span class="role">BSc &amp; MSc, Engineering Cycle (Ingénieur Polytechnicien)</span><br><span class="where"><a href="https://www.polytechnique.edu/">École Polytechnique</a> (X22)</span></td></tr>
+    </table>
+    <h3>Experience</h3>
+    <table class="news">
+      <tr><th scope="row">Apr – Jul 2025</th><td><span class="role">Research intern, Machine Learning for Particle Physics</span><br><span class="where">University of Tokyo &amp; CNRS</span></td></tr>
+    </table>
+  </div>
+
+  <!-- ============================== SOCIAL ============================== -->
+  <div class="social">
+    <a href="mailto:gabriel.lenain@inria.fr">Email</a>
+    <a href="https://scholar.google.com/citations?user=[SCHOLAR_ID]">Google Scholar</a>
+    <a href="https://github.com/gabriellenain">GitHub</a>
+    <a href="https://www.linkedin.com/in/gabriel-lenain-672175293">LinkedIn</a>
+  </div>
+  <p class="contact-note">The best way to reach me is by email.</p>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© Copyright 2026 Gabriel Lenain. Hosted by GitHub Pages. Last updated: October 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  btn.addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // Abs / Bib toggles: opening one closes its sibling, like al-folio.
+  document.querySelectorAll('.links button[aria-controls]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var target = document.getElementById(b.getAttribute('aria-controls'));
+      var open = target.hidden;
+      b.closest('.links').querySelectorAll('button[aria-controls]').forEach(function (o) {
+        o.setAttribute('aria-expanded', 'false');
+        document.getElementById(o.getAttribute('aria-controls')).hidden = true;
+      });
+      target.hidden = !open;
+      b.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  // Highlight the nav link of the section in view.
+  var links = document.querySelectorAll('.nav ul a[href^="#"]');
+  var ids = ['publications', 'cv'];
+  window.addEventListener('scroll', function () {
+    var current = 'top';
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
