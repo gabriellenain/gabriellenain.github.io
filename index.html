@@ -231,6 +231,7 @@ footer p { text-align: center; color: var(--muted); font-size: .8rem; margin: 14
   <h2 class="section">news</h2>
   <div class="news-scroll">
     <table class="news">
+      <tr><th scope="row">Nov 2026</th><td>Preprint <a href="https://arxiv.org/abs/2611.32998"><i>First-Hit Photoconsistency for Neural Surface Reconstruction</i></a> is out on arXiv.</td></tr>
       <tr><th scope="row">Oct 2026</th><td>Preprint <a href="https://arxiv.org/abs/2610.18005"><i>Surface Reconstruction from Range Scans under Visibility Constraints</i></a> is out on arXiv.</td></tr>
       <tr><th scope="row">Oct 2026</th><td>Started my PhD at ENS Paris &amp; Inria WILLOW, advised by Jean Ponce and Edmond Boyer.</td></tr>
       <tr><th scope="row">Apr 2026</th><td>Started a research internship at <a href="https://www.di.ens.fr/willow/">Inria WILLOW</a>.</td></tr>
@@ -244,6 +245,38 @@ footer p { text-align: center; color: var(--muted); font-size: .8rem; margin: 14
 
   <p class="year">2026</p>
   <ol class="bib">
+    <li class="highlight">
+      <div class="pub">
+        <div class="preview">
+          <span class="abbr">arXiv</span>
+          <img src="images/bmvs_jade_teaser_row_ranks.png" alt="Surface reconstruction comparison on BMVS Jade">
+        </div>
+        <div>
+          <div class="title">First-Hit Photoconsistency for Neural Surface Reconstruction</div>
+          <div class="author"><em>Gabriel Lenain</em>, <a href="https://eboyerfr.github.io/">Edmond Boyer</a>, and <a href="https://www.di.ens.fr/~ponce/">Jean Ponce</a></div>
+          <div class="periodical"><em>arXiv preprint arXiv:2611.32998</em>, 2026 · under review</div>
+          <div class="links">
+            <button type="button" aria-expanded="false" aria-controls="p2-abs">Abs</button>
+            <a href="https://arxiv.org/abs/2611.32998">arXiv</a>
+            <a href="https://arxiv.org/pdf/2611.32998">PDF</a>
+            <button type="button" aria-expanded="false" aria-controls="p2-bib">Bib</button>
+          </div>
+          <div class="abstract" id="p2-abs" hidden><p>We reconstruct continuous neural surfaces from calibrated images using
+            patch photoconsistency alone. Sphere tracing of a 1-Lipschitz neural field identifies the first
+            surface intersection and determines visibility across views. The position and normal at each
+            intersection define a patch that is compared across visible images. Our approach dispenses with
+            volumetric rendering, learned appearance models, foreground masks and auxiliary geometric
+            regularization. It achieves the lowest mean Chamfer distance among the methods compared on
+            BlendedMVS and competitive geometric accuracy on DTU.</p></div>
+          <div class="bibtex" id="p2-bib" hidden><pre>@article{lenain2026firsthit,
+  title   = {First-Hit Photoconsistency for Neural Surface Reconstruction},
+  author  = {Lenain, Gabriel and Boyer, Edmond and Ponce, Jean},
+  journal = {arXiv preprint arXiv:2611.32998},
+  year    = {2026}
+}</pre></div>
+        </div>
+      </div>
+    </li>
     <li class="highlight">
       <div class="pub">
         <div class="preview">
@@ -312,7 +345,7 @@ footer p { text-align: center; color: var(--muted); font-size: .8rem; margin: 14
 
 <footer>
   <div class="container">
-    <p>© Copyright 2026 Gabriel Lenain. Hosted by GitHub Pages. Last updated: October 2026.</p>
+    <p>© Copyright 2026 Gabriel Lenain. Hosted by GitHub Pages. Last updated: November 2026.</p>
   </div>
 </footer>
 
